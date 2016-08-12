@@ -2,14 +2,18 @@
 //===========================================================================
 //  CMD Markdown Compiler
 //  Usage:
-//    mdc [infile] [-o outfile]
+//    mdc [-l module] [infile] [-o outfile]
 //===========================================================================
+
+const linker = require('./linker');
 
 const fs = require('fs');
 const marked = require('marked');
 const minimist = require('minimist');
 
 var vargs = minimist(process.argv.slice(2));
+
+var renderer = linker(vargs.l);
 
 function readStream(stream, done) {
   var data = '';
@@ -54,5 +58,5 @@ function getmarkdown(done) {
 var outstream = (vargs.o) ? fs.createWriteStream(vargs.o) : process.stdout;
 
 getmarkdown(function(md) {
-  outstream.write(marked(md));
+  outstream.write(marked(md, { renderer: renderer }));
 });
