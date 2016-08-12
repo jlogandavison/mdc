@@ -1,0 +1,18 @@
+{
+  "name": "mdc",
+  "version": "0.0.1",
+  "description": "Commandline Markdown Compiler",
+  "main": "index.js",
+  "bin": {
+    "mdc": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jack Davison",
+  "license": "ISC",
+  "dependencies": {
+    "marked": "^0.3.6",
+    "minimist": "^1.2.0"
+  }
+}
